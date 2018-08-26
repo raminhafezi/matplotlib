@@ -12,7 +12,12 @@ shuffle(x)
 shuffle(y)
 print("X: {}, Y: {}".format(x, y))
 
-plt.scatter(x, y, label="Skitscat", color = "red", marker = "d", s = 25)
+plt.scatter(
+			x, 
+			y, 
+			label="Skitscat", 
+			color = "blue", 
+			marker = "x", s = 25)
 
 plt.xlabel('x')
 plt.ylabel('y')

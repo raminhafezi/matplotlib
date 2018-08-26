@@ -5,8 +5,7 @@ import matplotlib.pyplot as plt
 	We are talking about Pie_Chart
 	startangel = 90 -> means to rotate the chart in clockwise
 	explode = (0, 0.1, 0, 0) is a way to gain focus on the second pie section which is Eating at this pie chart
-	autopct is write the percentage of each section and the %1.1f%% is a code to write percentage
-	
+	autopct is write the percentage of each section and the %1.1f%% is a code to write percentage.
 	 
 '''
 days = ["Saturday", "Sunday", "Monday", "Tuesday","Wednesday", "Thursday", "Friday"]
@@ -19,7 +18,8 @@ clices = [7,2,2,13]
 Colors = ["cyan", "blue", "grey", "green"]
 Labels = ["Sleeping", "Eating", "Playing", "Working"]
 
-plt.pie(clices, 
+plt.pie(
+		clices, 
 		colors = Colors , 
 		labels = Labels, 
 		startangle = 45, 

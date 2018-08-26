@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import matplotlib.pyplot as plt
-from random import random, shuffle
 ''' 
 	We are talking about stack plot , to show the size of use/ percentage in a whole
 	our data is how much time we spending each day on 4 days.
@@ -16,10 +15,14 @@ working = [2, 1, 10, 13, 8, 9, 8]
 Colors = ["red", "blue", "black", "green"]
 Labels = ["Sleeping", "Eating", "Playing", "Working"]
 
-plt.stackplot(days, sleeping, eating, playing, working, colors = Colors , labels = Labels)
+plt.stackplot(
+				days, 
+				sleeping, eating, playing, working, 
+				colors = Colors , 
+				labels = Labels)
 
-plt.xlabel('x')
-plt.ylabel('y')
+plt.xlabel('activities')
+plt.ylabel('devoted hours')
 plt.title('Scatter chart\n Check it out')
 
 plt.legend()

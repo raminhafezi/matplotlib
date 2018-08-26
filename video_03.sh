@@ -38,7 +38,12 @@ ids = [x for x in range(len(population_ages))]
 basket = [x for x in range(140) if x % 10 ==0 ]
 print(basket)
 
-plt.hist(population_ages, basket, histtype = "bar", rwidth=0.8, label="Histogram bar charts for distribution of Age")
+plt.hist(
+		population_ages, 
+		basket, 
+		histtype = "bar", 
+		rwidth=0.8, 
+		label="Histogram bar charts for distribution of Age")
 
 
 plt.xlabel('ages')
