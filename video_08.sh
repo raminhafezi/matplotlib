@@ -6,6 +6,7 @@ import matplotlib.dates as mdates
 ''' 
 	We are talking about how to get data from internet and then show the data in a graph.
 	we are using numpy and YAHOO! finnace API as a data source to fetch stock prices.
+	We are charting Tesla Motors Stock price in last 5 years. We are charting its opening price per date.
 	
 	Run this file from terminal. Doesnot work with 'run' in geany
 		
