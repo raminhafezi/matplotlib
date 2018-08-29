@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 import matplotlib.pyplot as plt
 import urllib 
+import pickle
 import numpy as np
 import matplotlib.dates as mdates
+
 ''' 
 	We are talking about how to get data from internet and then show the data in a graph.
 	we are using numpy and YAHOO! finnace API as a data source to fetch stock prices.
@@ -63,3 +65,4 @@ def graph_date(stock):
 
 
 graph_date('TSLA')
+
