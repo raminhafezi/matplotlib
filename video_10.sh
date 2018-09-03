@@ -57,10 +57,10 @@ def graph_date(stock):
 														converters={0:bytespdate2num('%Y-%m-%d')})
 	
 	plt.plot_date(date, openp, '-')
-	plt.title('Interest Graph chart')
+	plt.title('Tesla Motors Stock Price, 5 years')
 	plt.xlabel('Date')
 	plt.ylabel('Price')
-	plt.legend()
+	plt.legend("TSLA")
 	plt.show()
 
 
