@@ -22,6 +22,8 @@ import matplotlib.dates as mdates
 	>>> datetime.datetime.fromtimestamp(now)
 	datetime.datetime(2018, 9, 4, 10, 39, 17, 83692)
 	>>>
+	
+	then we use the vectorize from numpy
 
 	
 		
