@@ -65,7 +65,7 @@ def graph_date(stock):
 	
 	plt.xlabel('Date')
 	plt.ylabel('Price')
-	plt.legend("TSLA")
+	plt.legend("Tesla Motors Share Price")
 	plt.show()
 
 
