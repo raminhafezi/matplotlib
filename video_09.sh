@@ -46,7 +46,7 @@ def graph_date(stock):
 	for line in split_source:
 		split_line = line.split(',')
 		stock_data.append(line)		
-		#print(stock_data)
+		print(stock_data)
 	date, openp, highp, lowp, closep, volume = np.loadtxt(stock_data, 
 														delimiter = ',', 
 														unpack=True,
