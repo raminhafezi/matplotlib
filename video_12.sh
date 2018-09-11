@@ -36,7 +36,7 @@ def graph_date(stock):
 	
 	lowestp = highestp = 0
 		
-	stock_price_url = 'https://api.iextrading.com/1.0/stock/'+stock+'/chart/2y?format=csv'
+	stock_price_url = 'https://api.iextrading.com/1.0/stock/'+stock+'/chart/5y?format=csv'
 	source_code = urllib.request.urlopen(stock_price_url).read().decode()
 	stock_data = []
 	split_source = source_code.split('\n')
@@ -69,7 +69,6 @@ def graph_date(stock):
 	min_closep = np.amin(closep)//10*10
 	
 	sorted_Yaxise_list = np.arange(min_closep, max_closep, (max_closep - min_closep)/10) #generate the Y axise number with 25 gap in between each number
-	print(sorted_Yaxise_list)
 	sorted_Yaxise_list = np.insert(sorted_Yaxise_list, 0, min_closep) # add the minimum number
 	sorted_Yaxise_list = np.insert(sorted_Yaxise_list, 0, max_closep) # add the maximum number
 	print("Final Y numbers range {}", sorted_Yaxise_list)
@@ -77,12 +76,12 @@ def graph_date(stock):
 	
 	plt.xlabel('Date')
 	plt.ylabel('Price(USD)')
-	plt.title('FACEBOOK Stock Price, 5 years')
-	plt.legend(title = 'Facebook', borderaxespad=0.8, loc=2)
+	plt.title('AMD Stock Price, 5 years')
+	plt.legend(title = 'AMD', borderaxespad=0.8, loc=2)
 	
 	#now the problem is that the label goes off the screen, we need to modify the margin
 	plt.subplots_adjust(top=0.88, right=0.900, bottom=0.165, left=0.165, wspace = 0.2, hspace=0.2)
 	plt.show()
 
-graph_date('EBAY')
+graph_date('AMD')
 
