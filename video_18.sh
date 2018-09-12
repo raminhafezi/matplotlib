@@ -9,23 +9,25 @@ from matplotlib import style
 import urllib
 import numpy as np
 
-'''  
-	In this video we are talking about adding text to the plot.
+''' 
+	we are talking about annotating the stock price ourside of the graph,
+	we are eager to annotate the latest price of the stock on the right side of the stock,
+	look at the picture in this web address:
+	https://www.fool.com/investing/2017/04/18/apple-stock-price-targets-rising-think-about-sell.aspx
 	
-	----> ax1.text(x location, y location, 'text')
-	the usage of the text on axise would be the formula of the graph, or the copyright.
+	we will use 
+	ax1.annotate('The string of what we want to display, in this case the last close price which we will show with closep[-1]',
+				 'the location that the annotate pointing to, in this case it is (date[-1], closep[-1)',
+				 ' the palce that the annotation take place, we want the price move dynamically with the price so the //
+				 xytext= (date[-1]+3', closep[-1]) this 3 put our annotation off the chart in the right side)
 	
-	---> we can also use another funtion named "annotate"
-	The good thing about the annotation is that we can use the fraction of the axise and
-	when we move the graph the annotation will alwaus point to the same locaiton of the graph.
+	we also like to have a box around that annotation, so we cover  this by bbox property in the annotation
+	we usually set the bbox = box-props and then set the properties of the box outside of the annotaion code
 	
-	and the annotaion will be pointed  to the locaiton
+	--> ax.annotation (str(something), loc(of something that point to), xytext( x_location, y_location ), bbox = box-props)
 	
-	
-	---> ax1.annotate('Bad News!', (date[11], highp[11]),
-						axtext = (0.8, 0.9), textcoords='axes function'
-						arrowprops = dict(facecolor = ''grey, color='grey'))
-	
+	have a look at this website https://matplotlib.org/users/annotations.html
+		
 '''
 style.use('ggplot')
 
@@ -76,10 +78,36 @@ def graph_date(stock):
 	
 	ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y/ %m/ %d'))
 	
+	bbox_props = dict(boxstyle="round4, pad=0.4", 
+					fc="#edef7c", # Facecolor 
+					ec="#000000", #edge color
+					lw=0.5 #line width
+					)
+	ax1.annotate(
+				str(closep[-1]), #string format of the annotation text
+				(date[-1], closep[-1]),  # the place the annotation pointing to
+				xytext = (date[-1]+3 , closep[-1]), # the (x, y) location of the annotation, +3 guarantee the annotation will be off the graph on right side
+				bbox = bbox_props # the property of the box around the annotation.
+				)
+	
+	
+	
+	# annotation example with arrow
+	'''
 	ax1.annotate('Bad News!', (date[11], closep[11]),
 						xytext = (0.8, 0.9), textcoords = 'axes fraction',
 						arrowprops = dict(facecolor = 'grey', color='grey'))
 	
+	# Font dict example
+	font_dict = {
+					'family' : 'serif',
+					'color' : 'darkred',
+					'size' : 15	}
+					
+	# Hard code text
+	ax1.text (date[10], closep[1], 'Text Example', fontdict = font_dict)
+		
+	'''
 	
 	plt.xlabel('Date')
 	plt.ylabel('Price(USD)')
@@ -87,7 +115,7 @@ def graph_date(stock):
 	plt.legend(title = 'Ebay', borderaxespad=0.8, loc=2)
 	
 	#now the problem is that the label goes off the screen, we need to modify the margin
-	plt.subplots_adjust(top=0.88, right=0.900, bottom=0.165, left=0.165, wspace = 0.2, hspace=0.2)
+	plt.subplots_adjust(top=0.88, right=0.900, bottom=0.465, left=0.065, wspace = 0.2, hspace=0.2)
 	plt.show()
 
 graph_date('EBAY')
