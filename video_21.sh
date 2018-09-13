@@ -11,7 +11,24 @@ from mpl_finance import candlestick_ohlc
 style.use('ggplot')
 '''
 		We are trying to show the Ebay average stock price on the ax3 
-		and also we will show some data on ax1 since ax2 showing the live stockprice		
+		and also we will show some data on ax1 since ax2 showing the live stockprice
+		In statistics, a moving average is a calculation to analyze data points by creating 
+		series of averages of different subsets of the full data set. It is also called a 
+		moving mean or rolling mean and is a type of finite impulse response filter. 
+		Variations include: simple, and cumulative, or weighted forms	
+		
+		and also check this website
+		https://www.investopedia.com/terms/m/movingaverage.asp
+		
+		How to Use Moving Averages
+		Moving averages lag current price action because they are based on past prices; 
+		the longer the time period for the moving average, the greater the lag. 
+		Thus, a 200-day MA will have a much greater degree of lag than a 20-day MA because it 
+		contains prices for the past 200 days. The length of the moving average to use depends 
+		on the trading objectives, with shorter moving averages used for short-term trading 
+		and longer-term moving averages more suited for long-term investors. 
+		The 50-day and 200-day MAs are widely followed by investors and traders, 
+		with breaks above and below this moving average considered to be important trading signals.
 		
 '''
 
