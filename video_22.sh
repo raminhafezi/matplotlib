@@ -30,40 +30,9 @@ style.use('ggplot')
 		The 50-day and 200-day MAs are widely followed by investors and traders, 
 		with breaks above and below this moving average considered to be important trading signals.
 		
-		
-		We also define a funtion named moving average to calculate the moving average of the stock price, 
-		we msut notice that we need to define the same starting point. 
-		In the moving average we used 
-		-->numpy.convolve() 
-		here is the definition of convolution in mathematics
-		In mathematics convolution is a mathematical operation on two functions to 
-		produce a third function that expresses how the shape of one is modified by the other. 
-		
-		or have a look at this video
-		https://www.youtube.com/watch?v=RCw530Emvks
-		
-		
-		Also we use 
-		
 '''
-MA1 = 5
-MA2 = 30
 
 
-def moving_average(values, window):
-	weights = np.repeat(1.0, window) / window
-	smas = np.convolve(values, weights, 'valid')
-	return smas
-
-def high_minus_low(highs, lows):
-	return highs-lows
-	
-highs = [11, 12, 15, 14, 13]
-lows = [2, 5, 6, 3, 4]
-
-h_l = list(map(high_minus_low, highs, lows)) #This is a quick way to apply the function into each corresponding elements of two list, otherwise we can use the for-loop
-
-#print(h_l)
 def bytespdate2num(fmt, encoding = 'utf-8'):
 	strconverter = mdates.strpdate2num(fmt)
 	def bytesconverter(b):
@@ -83,7 +52,7 @@ def graph_data(stock):
 	plt.ylabel('Price(USD)')
 	ax3 = plt.subplot2grid((6, 1), (5, 0), rowspan = 1, colspan = 1)
 	
-	stock_price_url = 'https://api.iextrading.com/1.0/stock/'+stock+'/chart/1y?format=csv'
+	stock_price_url = 'https://api.iextrading.com/1.0/stock/'+stock+'/chart/1m?format=csv'
 	source_code = urllib.request.urlopen(stock_price_url).read().decode()
 	stock_data = []
 	split_source = source_code.split('\n')
@@ -106,16 +75,7 @@ def graph_data(stock):
 		ohlc.append(append_me)
 		x+=1
 	
-	ma1 = moving_average(closep , MA1)
-	ma2 = moving_average(closep , MA2)
-	start = len(date[MA2-1:])
-	
-	h_l = list(map(high_minus_low, highp, lowp))
-	ax1.plot_date(date, h_l, '-')
-	
-		
 	candlestick_ohlc(ax2, ohlc, width = 0.15, colorup='#096d09', colordown='#9b287c') #color from http://www.color-hex.coms
-		
 	
 	for label in ax2.xaxis.get_ticklabels():
 		label.set_rotation(35)
@@ -132,13 +92,12 @@ def graph_data(stock):
 				xytext = (date[-1]+3 , closep[-1]), # the (x, y) location of the annotation, +3 guarantee the annotation will be off the graph on right side
 				bbox = bbox_props) # the property of the box around the annotation.
 
-	ax3.plot(date[-start:], ma1[-start:])
-	ax3.plot(date[-start:], ma2[-start:])
+
 
 	#plt.legend(title = 'Ebay', borderaxespad=0.8, loc=2)
 	
 	#now the problem is that the label goes off the screen, we need to modify the margin
-	plt.subplots_adjust(top=0.88, right=0.850, bottom=0.165, left=0.14, wspace = 0.2, hspace=0.2)
+	plt.subplots_adjust(top=0.88, right=0.650, bottom=0.265, left=0.365, wspace = 0.2, hspace=0.2)
 	plt.show()
 
 graph_data('EBAY')
