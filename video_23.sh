@@ -20,7 +20,7 @@ style.use('ggplot')
 		
 '''
 MA1 = 5
-MA2 = 30
+MA2 = 50
 
 
 def moving_average(values, window):
@@ -99,15 +99,14 @@ def graph_data(stock):
 				xytext = (date[-1]+3 , closep[-1]), # the (x, y) location of the annotation, +3 guarantee the annotation will be off the graph on right side
 				bbox = bbox_props) # the property of the box around the annotation.
 
-	SlowSMV = ax3.plot(date[-start:], ma1[-start:], linewidth = 1)
-	FastSMV = ax3.plot(date[-start:], ma2[-start:], linewidth = 1)
-	# ~ ax3.legend((SlowSMV, FastSMV), ('Slow', 'Fast'), loc='upper', shadow=True, fancybox = True)
-
+	SlowSMV = ax3.plot(date[-start:], ma1[-start:], linewidth = 1, label = 'Slow')
+	FastSMV = ax3.plot(date[-start:], ma2[-start:], linewidth = 1, label = 'Fast')
+	ax3.legend()
 	
 	ax3.fill_between(date[-start:], ma2[-start:], ma1[-start:], where=(ma1[-start:] < ma2[-start:]), 
-					facecolor= '#9b287c', edgecolor = 'r', alpha = 0.55)
-	ax3.fill_between(date[-start:], ma2[-start:], ma1[-start:], where=(ma1[-start:] > ma2[-start:]), 
 					facecolor= '#096d09', edgecolor = 'r', alpha = 0.55)
+	ax3.fill_between(date[-start:], ma2[-start:], ma1[-start:], where=(ma1[-start:] > ma2[-start:]), 
+					facecolor= '#9b287c', edgecolor = 'r', alpha = 0.55)
 	
 	ax3.xaxis.set_major_formatter(mdates.DateFormatter('%Y/ %m/ %d'))
 	for label in ax3.xaxis.get_ticklabels():
