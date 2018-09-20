@@ -62,12 +62,43 @@ style.use('ggplot')
 		we msut notice that we need to define the same starting point. 
 		In the moving average we used 
 		-->numpy.convolve() 
-		here is the definition of convolution in mathematics
-		In mathematics convolution is a mathematical operation on two functions to 
-		produce a third function that expresses how the shape of one is modified by the other. 
-		
+		Convolution definition: In mathematics convolution is a mathematical operation on two functions (f and g) to produce a third 
+		function that expresses how the shape of one is modified by the other.
+		have a look at here: 
+		https://en.wikipedia.org/wiki/Convolution
+
 		or have a look at this video
 		https://www.youtube.com/watch?v=RCw530Emvks
+		
+		Define usage of convolution in Matlab
+		https://it.mathworks.com/videos/using-convolution-to-smooth-data-with-a-moving-average-in-matlab-97193.html
+		
+		Define convolution method in SciPy
+		https://docs.scipy.org/doc/numpy/reference/generated/numpy.convolve.html
+		
+		
+		>>> Moving_Average() function   <<<<
+		in the moving average method we also use the numpy.repeat function.
+		https://docs.scipy.org/doc/numpy/reference/generated/numpy.repeat.html
+		>>> np.repeat(1, 5)
+		array([1, 1, 1, 1, 1])
+		>>> np.repeat(1, 5)/5
+		array([ 0.2,  0.2,  0.2,  0.2,  0.2])
+		>>> np.convolve([5,8,7,6,6,5,4], [1,1,1,1,1], 'valid')/5
+		array([ 6.4,  6.4,  5.6])
+		>>> 
+		>>> np.convolve([5, 8, 7, 6, 6, 5, 4], [0.2, 0.2, 0.2, 0.2, 0.2], 'valid')
+		array([ 6.4,  6.4,  5.6])
+		>>> 
+		Please note that np.convolve([5, 8, 7, 6, 6, 5, 4], [0.2, 0.2, 0.2, 0.2, 0.2], 'valid') = 
+						 np.convolve([5, 8, 7, 6, 6, 5, 4], [1, 1, 1, 1, 1], 'valid') /5
+						 
+		It is less confusing to use the second notation.
+		
+
+		
+
+		
 		
 
 		The fast moving average is blue and the slow moving average is red.
@@ -82,6 +113,15 @@ style.use('ggplot')
 MA1 = 5
 MA2 = 30
 
+'''
+		A short term moving average is faster because it only considers prices over short period of 
+		time and is thus more reactive to daily price changes. On the other hand, a long term moving 
+		average is deemed slower as it encapsulates prices over a longer period and is more lethargic.
+		
+		The faster moving average is a short term moving average. For end-of-day stock markets, 
+		for example, it may be 5-, 10- or 25-day period while the slower moving average is medium 
+		or long term moving average (e.g. 50-, 100- or 200-day period)
+'''
 
 def moving_average(values, window):
 	weights = np.repeat(1.0, window) / window
@@ -112,7 +152,7 @@ def graph_data(stock):
 	plt.ylabel('Price(USD)')
 	ax3 = plt.subplot2grid((6, 1), (5, 0), rowspan = 1, colspan = 1)
 	
-	stock_price_url = 'https://api.iextrading.com/1.0/stock/'+stock+'/chart/1y?format=csv'
+	stock_price_url = 'https://api.iextrading.com/1.0/stock/'+stock+'/chart/ytd?format=csv'
 	source_code = urllib.request.urlopen(stock_price_url).read().decode()
 	stock_data = []
 	split_source = source_code.split('\n')
